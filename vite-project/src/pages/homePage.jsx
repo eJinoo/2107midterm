@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box } from '@mui/material';
 import ProductCard from '../components/product_card';
 
+
 function HomePage(){
     const [products, setProducts] = useState([]);
 
