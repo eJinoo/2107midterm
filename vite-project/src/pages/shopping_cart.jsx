@@ -63,7 +63,7 @@ function ShoppingCart() {
   const handleCheckout = () => {
     setNotificationMessage('Checkout successful! Thank You for your purchase.');
     setOpenNotification(true);
-    setTimeout(() => navigate('*'), 2000);
+    navigate('*')
   };
 
   return (

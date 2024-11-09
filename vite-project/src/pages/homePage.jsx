@@ -27,7 +27,7 @@ function HomePage(){
      []);
 
      const handleCloseNotification = () => {
-        setOpenNotification(false); // Close the notification
+        setOpenNotification(false);
       };
 
     return (

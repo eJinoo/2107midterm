@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
-//import Notification from '../components/notification';
+//import Notification from '../components/notification'; notifications couldn't choose where to put it
 
 function ProductDetails() {
   const { productId } = useParams();
