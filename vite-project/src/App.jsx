@@ -4,6 +4,7 @@ import HomePage from './pages/homePage.jsx';
 import ProductDetails from './pages/Product_Details.jsx'; 
 import ShoppingCart from './pages/shopping_cart.jsx';
 import Navbar from './components/navbar';
+import Search from './pages/search';
 
 function App() {
   let element = useRoutes([
@@ -19,6 +20,10 @@ function App() {
       path: '/shopping_cart',
       element: <ShoppingCart />
     },
+    {
+      path: '/search',
+      element: <Search />
+    }
   ])
 
   return (
