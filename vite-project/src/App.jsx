@@ -1,26 +1,34 @@
 import './App.css'
 import { useRoutes } from 'react-router-dom';
 import HomePage from './pages/homePage.jsx';
-//import ProductPage from './ProductPage'; 
-//import ViewBlogsPag from './pages';
+import ProductDetails from './pages/Product_Details.jsx'; 
+import ShoppingCart from './pages/shopping_cart.jsx';
+import Navbar from './components/navbar';
 
 function App() {
   let element = useRoutes([
     {
-      path: '/HomePage',
+      path: '*',
       element: <HomePage />
-    }
-    // {
-    //   path: '/product_page',
-    //   element: <product_page />
-    // },
-    // {
-    //   path: '/shopping_cart',
-    //   element: <ViewBlogsPage />
-    // },
+    },
+    {
+      path: '/product/:productId',
+      element: <ProductDetails />
+    },
+    {
+      path: '/shopping_cart',
+      element: <ShoppingCart />
+    },
   ])
 
-  return element;
+  return (
+    <>
+      <Navbar />
+      <div style={{ marginTop: '64px' }}>
+        {element}
+      </div>
+    </>
+  );
 }
 
 export default App

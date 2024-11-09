@@ -1,0 +1,96 @@
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Button, Card, CardContent, CardMedia, IconButton } from '@mui/material';
+import { RemoveShoppingCart } from '@mui/icons-material';
+import Notification from '../components/notification';
+
+function ShoppingCart() {
+  const [cart, setCart] = useState([]);
+  const [openNotification, setOpenNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    setCart(storedCart);
+  }, []);
+
+  const removeItemFromCart = (index) => {
+    const updatedCart = [...cart];
+    updatedCart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    setCart(updatedCart);
+    setNotificationMessage("Item removed from cart!");
+    setOpenNotification(true);
+  };
+
+  const handleCloseNotification = () => {
+    setOpenNotification(false);
+  };
+
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+    setCart([]);
+  };
+
+  const calculateTotal = () => {
+    return cart.reduce((total, product) => total + product.price, 0).toFixed(2);
+  };
+
+  return (
+    <Box padding="20px">
+      <Typography variant="h4" gutterBottom>
+        Your Cart
+      </Typography>
+      
+      {cart.length === 0 ? (
+        <Typography variant="h6">Your cart is empty</Typography>
+      ) : (
+        cart.map((product, index) => (
+          <Card key={index} sx={{ display: 'flex', marginBottom: '20px' }}>
+            <CardMedia
+              component="img"
+              sx={{ width: 150 }}
+              image={product.image}
+              alt={product.title}
+            />
+            <CardContent sx={{ flex: 1 }}>
+              <Typography variant="h6">{product.title}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                ${product.price}
+              </Typography>
+            </CardContent>
+            <IconButton 
+              color="error" 
+              onClick={() => removeItemFromCart(index)} 
+              sx={{ alignSelf: 'flex-start', marginTop: '10px', marginRight: '10px' }}
+            >
+              <RemoveShoppingCart />
+            </IconButton>
+          </Card>
+        ))
+      )}
+
+      {cart.length > 0 && (
+        <>
+          <Typography variant="h5" sx={{ marginTop: '20px' }}>
+            Total: ${calculateTotal()}
+          </Typography>
+          <Button 
+            variant="contained" 
+            color="secondary" 
+            sx={{ marginTop: '20px' }} 
+            onClick={clearCart}
+          >
+            Clear Cart
+          </Button>
+        </>
+      )}
+      <Notification
+        open={openNotification}
+        message={notificationMessage}
+        onClose={handleCloseNotification}
+      />
+    </Box>
+  );
+}
+
+export default ShoppingCart;

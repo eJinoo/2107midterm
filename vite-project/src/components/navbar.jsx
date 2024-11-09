@@ -1,23 +1,26 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 
-export default function Navbar() {
-
-    return (
-        <Box marginBottom="20px">
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Hello, {user?.email}
-                    </Typography>
-
-                    <Button variant='contained' color='error' onClick={logout}>
-                        Logout
-                    </Button>
-                </Toolbar>
-
-            </AppBar>
-        </Box>
-    )
+function Navbar() {
+  return (
+    <AppBar position="fixed" sx={{ top: 0 }}>
+      <Toolbar>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Fake Store
+        </Typography>
+        <Button color="inherit" component={Link} to="/homePage">
+          Home
+        </Button>
+        <Button color="inherit" component={Link} to="/searchPage">
+          Search
+        </Button>
+        <Button color="inherit" component={Link} to="/shopping_cart">
+          Cart
+        </Button>
+      </Toolbar>
+    </AppBar>
+  );
 }
+
+export default Navbar;
