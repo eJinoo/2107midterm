@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
-import Notification from '../components/notification';
+//import Notification from '../components/notification';
 
 function ProductDetails() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState([]);
-  const [openNotification, setOpenNotification] = useState(false);
+  //const [openNotification, setOpenNotification] = useState(false);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -19,16 +19,16 @@ function ProductDetails() {
       .catch(error => console.error(error));
   }, [productId]);
 
-  const handleCloseNotification = () => {
-    setOpenNotification(false);
-  };
+//   const handleCloseNotification = () => {
+//     setOpenNotification(false);
+//   };
 
   const addToCart = () => {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
     navigate('/homePage');
-    setOpenNotification(true);
+    //setOpenNotification(true);
 
   };
 
@@ -49,11 +49,11 @@ function ProductDetails() {
         sx={{ marginTop: '20px' }}>
         Add to Cart
       </Button>
-      <Notification
+      {/* <Notification
         open={openNotification}
         message="Product added to cart!"
         onClose={handleCloseNotification}
-      />
+      /> */}
     </Box>
   );
 }
