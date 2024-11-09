@@ -41,7 +41,7 @@ function ProductDetails() {
       <Typography variant="body1">{product.description}</Typography>
       <Typography variant="h6">Category: {product.category}</Typography>
       <Typography variant="h6">Price: ${product.price}</Typography>
-      {/* <Typography variant="h6">Rating: {rating}</Typography> */}
+      {/* <Typography variant="h6">Rating: {product.rating.rate}</Typography>  I dont know why this broke it i think its not synchronized*/} 
       <Button 
         variant="contained" 
         color="primary" 
